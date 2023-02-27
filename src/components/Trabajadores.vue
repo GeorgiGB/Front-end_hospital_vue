@@ -40,6 +40,9 @@
           <td>
             <button @click="editTrabajador(trabajador)">Editar</button>
             <button @click="eliminarTrabajador(trabajador.id)">Eliminar</button>
+            <router-link :to="{name:'informacion-trabajador', params:{id:trabajador.id}}">
+              <button>Ver información trabajador</button>
+            </router-link>
           </td>
         </tr>
       </tbody>

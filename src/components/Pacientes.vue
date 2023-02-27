@@ -24,10 +24,10 @@
       <tbody>
         <tr v-for="paciente in pacientes" :key="paciente.id">
           <td>{{ paciente.id }}</td>
+          <td>{{ paciente.num_carnet }}</td>
           <td>{{ paciente.nombre }}</td>
           <td>{{ paciente.apellido }}</td>
-          <td>{{ paciente.num_carnet }}</td>
-          <td>{{ paciente.atendido }}</td>
+          <td>{{ paciente.atendido_por }}</td>
           <td>{{ paciente.id_enfermedad }}</td>
           <td>
             <!-- Agregar botones de opciones -->
@@ -55,7 +55,6 @@
           id="trabajador-seleccionado"
           v-model="trabajadorSeleccionado"
           class="form-control"
-          required
         >
         <option v-for="trabajador in trabajadores" :key="trabajador.id">{{ trabajador.nombre }}</option>
         </select>
@@ -120,35 +119,44 @@ export default {
   },
   created() {
     const token = localStorage.getItem("token");
+    this.token = token;
     if (!token) {
       this.$router.push("/");
     } else {
-      //this.mostrarTrabajadores(token);
-      this.mostrarPacientes(token);
+      this.mostrarPacientes();
     }
   },
   methods: {
     formNuevoPaciente(){
-      formularioAgregar= true,
-      formularioEditar= false
+      this.formularioAgregar= true,
+      this.formularioEditar= false
     },
     editPaciente(paciente){
-      //addForm = true
-      formularioAgregar= false,
-      formularioEditar= true,
+      this.formularioAgregar= false,
+      this.formularioEditar= true,
       this.pacienteEditado = {...paciente};
     },
     cancelEdit(){
-      //addForm = false
+      formularioAgregar= false,
+      formularioEditar= false,
+      this.editarPaciente = {
+        id: "",
+        nombre: "",
+        apellidos: "",
+        numCarnet: "",
+        atendido: "",
+        idEnfermedad: ""
+      }
     },
     async mostrarPacientes() {
-      const response = await fetch("https://127.0.0.1:8000/api/pacientes", {
+      const response = await fetch(`https://127.0.0.1:8000/api/pacientes`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.token}`,
+          Authorization: `Bearer ${this.token}`,
         },
       });
+      console.log(response);
       const data = await response.json();
       if (!response) {
         throw new Error("No se pudo mostrar pacientes");

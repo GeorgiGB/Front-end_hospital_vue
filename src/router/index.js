@@ -3,6 +3,7 @@ import LoginView from "../views/LoginView.vue";
 import Trabajadores from "../views/TrabajadoresView.vue";
 import Pacientes from "../views/PacientesView.vue";
 import Enfermedades from "../views/EnfermedadesView.vue";
+import TrabajadorInfo from "../views/InfoTrabajador.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/enfermedades-tabla",
     name: "enfermedades",
     component: Enfermedades,
+  },
+  {
+    path: "/informacion-trabajador/:id",
+    name: "informacion-trabajador",
+    component: TrabajadorInfo,
   },
 ];
 

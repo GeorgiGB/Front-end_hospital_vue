@@ -60,7 +60,7 @@
     <!--FORMULARIO EDITAR ENFERMEDAD-->
     <div v-if="formularioEditarEnfermedad" class="formClass">
       <h3>Editar Enfermedad</h3>
-      <form>
+      <form @submit.prevent = "actualizarEnfermedad(editarEnfermedad)">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" v-model="editarEnfermedad.nombre" />
         <label for="descripcion">Descripcion:</label>
@@ -69,9 +69,7 @@
           name="descripcion"
           v-model="editarEnfermedad.descripcion"
         />
-        <button @click="actualizarEnfermedad(editarEnfermedad.id)">
-          Guardar
-        </button>
+        <button  type="submit">Guardar</button>
         <button @click="cancelEdit">Cancelar</button>
       </form>
     </div>
@@ -143,12 +141,16 @@ export default {
       }
     },
     async actualizarEnfermedad(id) {
+      var res = JSON.stringify({
+      "nombre": this.editarEnfermedad.nombre,
+      "descripcion": this.editarEnfermedad.descripcion
+})
       await fetch(`https://127.0.0.1:8000/api/enfermedades/put/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
-        body: JSON.stringify(this.editarEnfermedad),
+        body: res,
       })
         .then((response) => {
           this.mostrarEnfermedades();
