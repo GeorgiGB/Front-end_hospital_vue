@@ -25,6 +25,7 @@
           required
         />
       </div>
+      <button type="submit" @click.prevent="registerPage">Registrarse</button>
       <button type="submit" @click.prevent="login">Iniciar sesión</button>
     </form>
   </div>
@@ -32,7 +33,9 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
+  name: "login",
   data() {
     return {
       hora: null,
@@ -64,6 +67,10 @@ export default {
         this.$router.push("/trabajadores-tabla");// lo digirimos a la siguiente web
         }
     },
+
+    registerPage(){
+      this.$router.push('/register')
+    }
   },
 };
 </script>

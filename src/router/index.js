@@ -4,6 +4,7 @@ import Trabajadores from "../views/TrabajadoresView.vue";
 import Pacientes from "../views/PacientesView.vue";
 import Enfermedades from "../views/EnfermedadesView.vue";
 import TrabajadorInfo from "../views/InfoTrabajador.vue";
+import RegisterView from "../views/RegisterView.vue";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     name: "informacion-trabajador",
     component: TrabajadorInfo,
   },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterView,
+  }
 ];
 
 const router = createRouter({

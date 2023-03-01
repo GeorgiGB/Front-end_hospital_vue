@@ -5,6 +5,7 @@
       <li><router-link to="/pacientes-tabla">Pacientes</router-link></li>
       <li><router-link to="/trabajadores-tabla">Trabajadores</router-link></li>
       <li><router-link to="/">Volver al inicio</router-link></li>
+      <li><router-link to="/register">Registrar usuario</router-link></li>
     </ul>
   </div>
 </template>

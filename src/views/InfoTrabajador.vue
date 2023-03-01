@@ -10,7 +10,7 @@
       <p>Grupo: {{ trabajadorEncontrado.grupo }}</p>
     <button
       class="btn btn-primary"
-      @click="$router.push('/trabajadores-tabla')"
+      @click="this.$router.back('/trabajadores-tabla')"
     >
       Volver
     </button>
